@@ -1,18 +1,18 @@
 :root {
-  --color_1: #230616;
-  --color_2: #e76a3a;
-  --color_3: #ffda94;
-  --color_4: #e54a13;
-  --color_5: #910644;
-  --color_6: #5c042b;
-  --color_7: white;
+  --color_background:   #230512;
+  --color_header:       #d74c22;
+  --color_link:         #ffda94;
+  --color_link_hover:   #d74c22;
+  --color_menu:         #961937;
+  --color_button_hover: #5d1c27;
+  --color_text:         white;
 }
 
 
 
 body {
-	background-color: var(--color_1);
-	color: var(--color_7);
+	background-color: var(--color_background);
+	color: var(--color_text);
 	text-align: center;
 	font-family: helvetica;
 	font-size: 34px;
@@ -25,24 +25,27 @@ i {
 	margin: 10px;
 }
 h2 {
-	color: var(--color_2);
+	color: var(--color_header);
+}
+h4 {
+	color: var(--color_header);
 }
 a {
 	text-decoration: none;
 }
 a:link {
 	text-decoration: none;
-	color: var(--color_3);
+	color: var(--color_link);
 }
 
 a:visited {
 	text-decoration: none;
-	color: var(--color_3);
+	color: var(--color_link);
 }
 
 a:hover {
 	text-decoration: none;
-	color: var(--color_4);
+	color: var(--color_link_hover);
 }
 
 a:active {
@@ -50,15 +53,15 @@ a:active {
 }
 
 .nav {
-	background-color: var(--color_5);
+	background-color: var(--color_menu);
 	margin: 0;
-	padding: 20;
+	padding: 20px;
 }
 .nav a {
 	padding: 20px;
 }
 .button {
-	background-color: var(--color_5);
+	background-color: var(--color_menu);
 	border-radius: 12px;
 	padding: 20px;
 	margin: 40px;
@@ -68,18 +71,20 @@ a:active {
 	margin-bottom: 80px;
 	border-style: solid;
 	border-width: 4px;
-	border-color: var(--color_3);
+	border-color: var(--color_link);
 }
 
 a:hover .button {
-	background-color: var(--color_6);
-	border-color: var(--color_4);
+	background-color: var(--color_button_hover);
+	border-width: 2px;
+	border-color: var(--color_text);*/
+	border-color: var(--color_link_hover);
 }
 
 .callout {
-	background-image: linear-gradient(var(--color_5), var(color_4));
+	background-image: linear-gradient(var(--color_menu), var(--color_link_hover));
 	border-width: 2px;
-	border-color: var(--color_7);
+	border-color: var(--color_text);
 	width: 400px;
 	height: 200px;
 	padding: 10px;
