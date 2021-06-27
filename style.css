@@ -1,6 +1,18 @@
+:root {
+  --color_1: #230616;
+  --color_2: #e76a3a;
+  --color_3: #ffda94;
+  --color_4: #e54a13;
+  --color_5: #910644;
+  --color_6: #5c042b;
+  --color_7: white;
+}
+
+
+
 body {
-	background-color: #230616;
-	color: white;
+	background-color: var(--color_1);
+	color: var(--color_7);
 	text-align: center;
 	font-family: helvetica;
 	font-size: 34px;
@@ -13,24 +25,24 @@ i {
 	margin: 10px;
 }
 h2 {
-	color: #e76a3a;
+	color: var(--color_2);
 }
 a {
 	text-decoration: none;
 }
 a:link {
 	text-decoration: none;
-	color: #ffda94;
+	color: var(--color_3);
 }
 
 a:visited {
 	text-decoration: none;
-	color: #ffda94;
+	color: var(--color_3);
 }
 
 a:hover {
 	text-decoration: none;
-	color: #e54a13;
+	color: var(--color_4);
 }
 
 a:active {
@@ -38,7 +50,7 @@ a:active {
 }
 
 .nav {
-	background-color: #910644;
+	background-color: var(--color_5);
 	margin: 0;
 	padding: 20;
 }
@@ -46,7 +58,7 @@ a:active {
 	padding: 20px;
 }
 .button {
-	background-color: #910644;
+	background-color: var(--color_5);
 	border-radius: 12px;
 	padding: 20px;
 	margin: 40px;
@@ -56,18 +68,18 @@ a:active {
 	margin-bottom: 80px;
 	border-style: solid;
 	border-width: 4px;
-	border-color: #ffda94;
+	border-color: var(--color_3);
 }
 
 a:hover .button {
-	background-color: #5c042b;
-	border-color: #e54a13;
+	background-color: var(--color_6);
+	border-color: var(--color_4);
 }
 
 .callout {
-	background-image: linear-gradient(#910644, #e54a13);
+	background-image: linear-gradient(var(--color_5), var(color_4));
 	border-width: 2px;
-	border-color: white;
+	border-color: var(--color_7);
 	width: 400px;
 	height: 200px;
 	padding: 10px;
