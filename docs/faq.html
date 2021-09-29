@@ -40,6 +40,9 @@
 <a href="#what-is-chimera-app">
 	<h4>What is the Chimera app?</h4>
 </a>
+<a href="#chimera-access">
+	<h4>How can I access the Chimera app?</h4>
+</a>
 <a href="#chimera-emu-platforms">
 	<h4>What emulated console platforms does the Chimera app support?</h4>
 </a>
@@ -66,6 +69,9 @@
 </a>
 <a href="#secondary-storage">
 	<h4>Can I use a secondary disk to store my games?</h4>
+</a>
+<a href="#steam-library">
+	<h4>How can I add Steam library folders?</h4>
 </a>
 <a href="#games-not-available">
 	<h4>Why are some games not available to install?</h4>
@@ -115,6 +121,21 @@
 </p>
 <p>
 	It also functions as a handy remote control for your ChimeraOS box when used from your phone.
+</p>
+<hr>
+
+
+
+
+
+<a id="chimera-access" href="#chimera-access">
+	<h4>How can I access the Chimera app?</h4>
+</a>
+<p>
+	The Chimera app can be accessed from a web browser on another device by navigating to <code>chimeraos.local</code> or the IP address of your ChimeraOS machine.
+</p>
+<p>
+	You can obtain the IP address of your ChimeraOS machine by navigating to <code>Settings->Network</code> in the Steam Big Picture interface.
 </p>
 <hr>
 
@@ -189,13 +210,7 @@
 	<h4>How do I install non-Steam games?</h4>
 </a>
 <p>
-	Non-Steam games can be installed using the Chimera app.
-</p>
-<p>
-	The app can be accessed from a web browser on another device by navigating to <code>chimeraos.local</code> or the IP address of your ChimeraOS machine.
-</p>
-<p>
-	You can obtain the IP address of your ChimeraOS machine by navigating to <code>Settings->Network</code> in the Steam Big Picture interface.
+	Non-Steam games can be installed from the Library page of the Chimera app.
 </p>
 <hr>
 
@@ -220,9 +235,6 @@
 </a>
 <p>
 	ChimeraOS is meant to replicate a game console experience and therefore does not have a desktop.
-</p>
-<p>
-	This means ChimeraOS takes up very little disk space, leaving more room for the important things: games.
 </p>
 <hr>
 
@@ -270,14 +282,23 @@
 
 
 
+<a id="steam-library" href="#steam-library">
+	<h4>How can I add Steam library folders?</h4>
+</a>
+<p>
+	Steam Big Picture does not support adding Steam library folders. This feature is expected to become available with the Steam Deck/Gamepad UI which was announced to be replacing Steam Big Picture.
+</p>
+<hr>
+
+
+
+
+
 <a id="games-not-available" href="#games-not-available">
 	<h4>Why are some games not available to install?</h4>
 </a>
 <p>
-	Most games on Steam are Windows games and ChimeraOS is based on Linux. A compatibility layer called Steam Play/Proton is used to enable playing Windows games on ChimeraOS.
-</p>
-<p>
-	Not all Windows games are enabled out of the box with Steam Play. This is either because these games have not been tested or because they do not work with ChimeraOS.
+	ChimeraOS uses a compatibility layer called Steam Play/Proton to play Windows games. However, only games that have been tested and known to work are enabled with Steam Play out of the box. Other games must have Steam Play enabled manually before they can be installed.
 </p>
 <p>
 	You can enable Steam Play for a game as follows:
@@ -289,13 +310,7 @@
 	</ol>
 </p>
 <p>
-	If you find a game that works with Steam Play after enabling it manually, please report it to the <code>#compatibility-reports</code> channel on the <a href="https://discord.gg/fKsUbrt">ChimeraOS Discord</a> so we can enable it for everyone.
-</p>
-<p>
-	Make sure to include the game name and the version of Steam Play/Proton that was used for testing.
-</p>
-<p>
-	With your help we can make ChimeraOS a better experience for all!
+	If you find a game that works with Steam Play after enabling it manually, please report it to the <code>#compatibility-reports</code> channel on the <a href="https://discord.gg/fKsUbrt">ChimeraOS Discord</a> so it can be enabled for everyone.
 </p>
 <hr>
 
@@ -307,10 +322,7 @@
 	<h4>How can I update my ChimeraOS system?</h4>
 </a>
 <p>
-	System updates are downloaded in the background automatically. A system notification will appear when an update has completed downloading. You can restart your system at any time to apply the update.
-</p>
-<p>
-	Note that there is no waiting on an update process. Updates are applied instantly upon reboot.
+	System updates are automatically downloaded in the background. A system notification will appear when an update has completed downloading. You can restart your system at any time to apply the update.
 </p>
 <hr>
 
@@ -322,11 +334,9 @@
 	<h4>How can I install and use desktop applications such as Discord?</h4>
 </a>
 <p>
-	While you can technically install Discord and other applications, ChimeraOS does not support multi-tasking nor does it support the use of desktop software. It provides an environment optimized specifically for running games.
+	While you can technically install Discord and other similar applications, ChimeraOS does not support multi-tasking nor does it support the use of desktop software. It provides an environment optimized specifically for running games.
 </p>
-<p>
-	The recommended way to use Discord is through the phone app.
-</p>
+
 
 </div>
 
