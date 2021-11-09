@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>ChimeraOS</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="hamnav">
+	<label for="hamburger">&#9776;</label>
+	<input type="checkbox" id="hamburger"/>
+
+	<div id="hamitems">
+		<a href="/">Home</a>
+		<a href="/about">About</a>
+		<a href="/download">Download</a>
+		<a href="/games">Games</a>
+		<a href="/contribute">Contribute</a>
+		<a href="/faq">FAQ</a>
+	</div>
+</nav>
+
+<br>
+
+<div class="social">
+	<a aria-label="Twitter" href="https://twitter.com/ChimeraOS_Linux"><i class="ri-twitter-fill"></i></a>
+	<a aria-label="Steam" href="https://steamcommunity.com/groups/chimeraos"><i class="ri-steam-fill"></i></a>
+	<a aria-label="Discord" href="https://discord.gg/fKsUbrt"><i class="ri-discord-fill"></i></a>
+	<a aria-label="GitHub" href="https://github.com/chimeraos"><i class="ri-github-fill"></i></a>
+	<a aria-label="Patreon" href="https://patreon.com/alkazar"><i class="ri-patreon-fill"></i></a>
+</div>
+
+<div class="content">
+<center>
+<h3>Proton GE and ChimeraOS</h3>
+</center>
+
+<p>
+Proton is a compatibility layer built into Steam that allows Windows games to work on Linux and ChimeraOS. It is quite important to ChimeraOS because without it there would be far fewer playable games available. Proton GE is a community version of Proton with more bleeding edge features and often improved game compatibility.
+</p>
+
+<p>
+Unlike the official version of Proton, Proton GE is not included in Steam by default and is not all that easy to install for those unfamiliar with it.
+</p>
+
+<p>
+ChimeraOS users were very frequently asking how they could install Proton GE because they naturally wanted to play a wider range of games. The answer to that question used to be quite complicated, involving manually copying files through ftp or ssh. Today, it is as easy as selecting a version of Proton GE in the Steam Play settings in Steam, but it took some time to get to this point.
+</p>
+
+<center>
+<img src="proton-ge_steam-play.png" width="400px">
+</center>
+
+
+<p>
+When trying to find a solution to the problem of how to easily install Proton GE, a few different ideas were considered.
+</p>
+
+<p>
+The first and obvious idea was to simply include Proton GE pre-installed with ChimeraOS. While this would work, it had some serious drawbacks. For one, Proton GE is quite large. A single version of Proton GE is over 1 GB in size, while ChimeraOS itself is around 5 GB. It would be rather wasteful for those who never need to use Proton GE to have an OS that is 20% larger for no benefit.
+</p>
+
+<p>
+Furthermore, it is important to be able to keep older versions of Proton GE around because it is possible for new versions to break compatibility with some games. However, it would be impractical to keep adding new versions of Proton GE to ChimeraOS. The system would become bloated beyond belief.
+</p>
+
+<p>
+Another idea was to add a Proton GE management page to the Chimera web app where you could remotely download and install new versions of Proton GE through your browser. However, besides the problem of users not naturally being able to find this feature, it also wouldn't allow us to ensure that Proton GE was installed as a prerequisite for games that require it. This is important because we want to provide an out of the box experience for as many games as possible.
+</p>
+
+<p>
+After a little bit of research into how exactly Steam lists and launches different versions of Proton GE, we found a way to automatically install specific versions of Proton GE for games that require it, and also allow the user to select any version of Proton GE in Steam Play without having to pre-install anything.
+</p>
+
+<p>
+Is it magic? No! This is how it is done:
+<ol>
+<li>we add stubs for each version of Proton GE to Steam</li>
+<li>when invoked by running a Steam game, the stub transparently downloads and runs the selected version of Proton GE</li>
+</ol>
+</p>
+
+<p>
+For the first part, we essentially lie to Steam, telling it there are many different versions of Proton GE installed when there are actually none installed. Steam happily plays along and lists the Proton GE versions in its interface for users to select from.
+</p>
+
+<p>
+When a user starts a game and Steam invokes the fake Proton GE stub, it is actually invoking a script which downloads and launches the Proton GE version that was selected by the user in Steam. The download only happens once, and after Proton GE is installed the stub is removed without a trace.
+</p>
+
+<p>
+It is a pretty neat solution that took some research and thought to get to, but was definitely worth the wait for the extremely simple experience it affords to ChimeraOS users.
+</p>
+
+</div>
+
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+	<!-- https://remixicon.com/ -->
+</body>
+</html>
