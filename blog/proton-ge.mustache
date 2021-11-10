@@ -6,24 +6,27 @@
 </center>
 
 <p>
-Proton is a compatibility layer built into Steam that allows Windows games to work on Linux and ChimeraOS. It is quite important to ChimeraOS because without it there would be far fewer playable games available. Proton GE is a community version of Proton with more bleeding edge features and often improved game compatibility.
+Proton is a compatibility layer built into Steam that allows Windows games to work on Linux and ChimeraOS. It is quite important to ChimeraOS because without it there would be far fewer playable games available.
 </p>
 
 <p>
-Unlike the official version of Proton, Proton GE is not included in Steam by default and is not all that easy to install for those unfamiliar with it.
+Proton GE is a community version of Proton with more bleeding edge features and often improved game compatibility. Unlike the official version of Proton, Proton GE is not included in Steam by default and is not all that easy to install for those unfamiliar with it.
 </p>
 
 <p>
-ChimeraOS users were very frequently asking how they could install Proton GE because they naturally wanted to play a wider range of games. The answer to that question used to be quite complicated, involving manually copying files through ftp or ssh. Today, it is as easy as selecting a version of Proton GE in the Steam Play settings in Steam, but it took some time to get to this point.
+ChimeraOS users were very frequently asking how they could install Proton GE because they naturally wanted to play a wider range of games. Due to the nature of ChimeraOS being an exclusively gamepad controlled experience the answer to that question used to be quite complicated, involving manually copying files through ftp or ssh. Today, it is as easy as selecting a version of Proton GE in the Steam Play settings in Steam.
 </p>
 
 <center>
 <img src="proton-ge_steam-play.png" width="400px">
 </center>
 
+<p>
+Beyond being able to select Proton GE manually, we can also preconfigure it to be used with specific games so that they can work out of the box without the user needing to be aware Proton GE is required for those games or that Proton GE even exists.
+</p>
 
 <p>
-When trying to find a solution to the problem of how to easily install Proton GE, a few different ideas were considered.
+It took some time and research to get to this point. When trying to find a solution to the problem of how to easily install Proton GE, a few different ideas were considered.
 </p>
 
 <p>
@@ -45,8 +48,8 @@ After a little bit of research into how exactly Steam lists and launches differe
 <p>
 Is it magic? No! This is how it is done:
 <ol>
-<li>we add stubs for each version of Proton GE to Steam</li>
-<li>when invoked by running a Steam game, the stub transparently downloads and runs the selected version of Proton GE</li>
+<li>We add stubs for each version of Proton GE to Steam.</li>
+<li>When invoked by running a Steam game, the stub transparently downloads and runs the selected version of Proton GE.</li>
 </ol>
 </p>
 
@@ -55,11 +58,11 @@ For the first part, we essentially lie to Steam, telling it there are many diffe
 </p>
 
 <p>
-When a user starts a game and Steam invokes the fake Proton GE stub, it is actually invoking a script which downloads and launches the Proton GE version that was selected by the user in Steam. The download only happens once, and after Proton GE is installed the stub is removed without a trace.
+When a user starts a game and Steam invokes the fake Proton GE stub, it is actually invoking a script which downloads and launches the Proton GE version that was selected by the user in Steam. The download only happens once, and after Proton GE is installed, the stub is removed without a trace.
 </p>
 
 <p>
-It is a pretty neat solution that took some research and thought to get to, but was definitely worth the wait for the extremely simple experience it affords to ChimeraOS users.
+It took some time to arrive at this solution and we certainly made our users wait, but it was definitely worth it for the extremely simple experience it affords to ChimeraOS users in the end.
 </p>
 
 </div>
