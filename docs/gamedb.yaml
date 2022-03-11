@@ -1,0 +1,2001 @@
+- name: '2064: Read Only Memories'
+  platform: epic-store
+  id: f4e0c1dff48749fa9145c1585699e276
+  banner: steam:330820
+
+- name: 20XX
+  platform: epic-store
+  id: Quail
+  banner: steam:322110
+  status: unsupported
+
+- name: Absolute Drift
+  platform: epic-store
+  id: 19927295d6e3467887d4e830d8c85963
+  banner: steam:320140
+  status: verified
+
+- name: Absolute Drift
+  platform: gog
+  id: 1136126792
+  banner: steam:320140
+  status: verified
+
+- name: ABZU
+  platform: epic-store
+  id: Curry
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/33e8dc3b7581c60b4a0d05dc7d57ca6d.png
+  status: verified
+
+- name: AER Memories of Old
+  platform: epic-store
+  id: 26b63c46de9e4dcc856b3c6b106b6777
+  banner: steam:331870
+  status: unsupported
+
+- name: Armagetron Advanced
+  platform: flathub
+  id: org.armagetronad.ArmagetronAdvanced
+  banner: /images/flathub/org.armagetronad.ArmagetronAdvanced
+  status: playable
+
+- name: 'Brigador: Up-Armored Edition'
+  platform: gog
+  id: 1356485086
+  banner: steam:274500
+  status: playable
+  notes:
+    - Displays keyboard icons
+
+- name: Cave Story+
+  platform: epic-store
+  id: 1dea8a6ddb544842a58e4b5c8675ff58
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/24246693bd6404fae9999736716fdbc7.png
+  status: playable
+  notes:
+    - No controller support
+
+- name: Cave Story NX
+  platform: flathub
+  id: com.gitlab.coringao.cavestory-nx
+  banner: /images/flathub/com.gitlab.coringao.cavestory-nx
+  status: playable
+
+- name: Cave Story's Secret Santa
+  platform: gog
+  id: 1278463559
+  banner: steam:1812280
+  status: verified
+
+- name: Chasm
+  platform: gog
+  id: 1114021228
+  banner: steam:312200
+  status: verified
+
+- name: Chiaki
+  platform: flathub
+  id: re.chiaki.Chiaki
+  banner: /images/flathub/re.chiaki.Chiaki
+  status: playable
+
+- name: Chromium
+  platform: flathub
+  id: org.chromium.Chromium
+  banner: /images/flathub/org.chromium.Chromium
+  status: playable
+  notes:
+    - No controller support
+    - Requires alternative window mode to access menus
+
+- name: Control
+  platform: epic-store
+  id: Calluna
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/05de265b83af799ad4f6753aff62d1ee.png
+
+- name: Costume Quest 2
+  platform: epic-store
+  id: 82a78a4dd6ef4eaa892707791b705073
+  banner: steam:275180
+  status: verified
+
+- name: Creature in the Well
+  platform: epic-store
+  id: a579a08e71b341e6af106dbd170e2ab2
+  banner: steam:852300
+  status: verified
+  compat_tool: Proton-7.1-GE-2
+
+- name: Cyberpunk 2077
+  platform: gog
+  id: 1423049311
+  banner: steam:1091500
+  status: unsupported
+
+- name: DAEMON X MACHINA
+  platform: epic-store
+  id: f4f0d39fbb4640e0be62aa91d9eca87d
+  banner: steam:1167450
+  status: playable
+  notes:
+    - Requires keyboard to customize character name
+
+- name: DARQ
+  platform: epic-store
+  id: ee96375fac2f47de978170a24398e581
+  banner: steam:433550
+
+- name: Enter the Gungeon
+  platform: epic-store
+  id: Garlic
+  banner: steam:311690
+  status: verified
+
+- name: The Escapists
+  platform: epic-store
+  id: Peony
+  banner: steam:298630
+
+- name: Firefox
+  platform: flathub
+  id: org.mozilla.firefox
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/2082428d280d13163bb67644f5b0274c.png
+  status: playable
+  notes:
+    - No controller support
+    - Requires alternative window mode to access menus
+
+- name: The First Tree
+  platform: epic-store
+  id: cd98b47155654e1f9a9e84e60d0b49e4
+  banner: steam:555150
+  status: verified
+
+- name: Fortnite
+  platform: epic-store
+  id: Fortnite
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/f5aeecbffe87c62489add19712de0d7e.png
+  status: unsupported
+
+- name: Genshin Impact
+  platform: epic-store
+  id: 41869934302e4b8cafac2d3c0e7c293d
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/c2904ed6cfa731edd18d8ffe285b6695.png
+  status: unsupported
+
+- name: 'Ghostbusters: The Video Game Remastered'
+  platform: epic-store
+  id: Mint
+  banner: steam:1449280
+
+- name: Hand of Fate 2
+  platform: epic-store
+  id: 808f0dfbf3b84c2680793724d7f207bf
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/359c4daad63a9a11c06960df0a6ed480.jpg
+  status: unsupported
+
+- name: Hedgewars
+  platform: flathub
+  id: org.hedgewars.Hedgewars
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/e3408432c1a48a52fb6c74d926b38886.png
+  status: playable
+
+- name: Hell is Other Demons
+  platform: epic-store
+  id: 5ade01bafec54a148024665ce978b2a4
+  banner: steam:595790
+  status: verified
+
+- name: Horizon Chase Turbo
+  platform: epic-store
+  id: bb406082b69a47208489d3616b22b5c2
+  banner: steam:389140
+  status: verified
+
+- name: INSIDE
+  platform: epic-store
+  id: Marigold
+  banner: steam:304430
+  status: verified
+
+- name: Into the Breach
+  platform: epic-store
+  id: Blobfish
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/17d2ba79091ad8d77f9ce68731c00986.png
+  status: unsupported
+
+- name: Katawa Shoujo
+  platform: flathub
+  id: com.katawa_shoujo.KatawaShoujo
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/a7282c84a4c2109c3697b6aca8b86aba.png
+  status: playable
+
+- name: Ken Follett's The Pillars of the Earth
+  platform: epic-store
+  id: 819985835fd54090845e3083e28b77bb
+  banner: steam:234270
+  status: verified
+
+- name: Killing Floor 2
+  platform: epic-store
+  id: Finch
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/55b37c5c270e5d84c793e486d798c01d.png
+
+- name: 'Kingdom: New Lands'
+  platform: epic-store
+  id: cacao
+  banner: steam:496300
+
+- name: Kodi
+  platform: flathub
+  id: tv.kodi.Kodi
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/0decbbe8e7f4bbda5ecf7be75866985e.png
+  status: playable
+
+- name: Magic The Gathering Arena
+  platform: epic-store
+  id: stargazer
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/d6d124ffdb821cc19f989f2fa5a28ce7.png
+
+- name: Metro 2033 Redux
+  platform: epic-store
+  id: Petunia
+  banner: steam:286690
+
+- name: 'Metro: Last Light Redux'
+  platform: epic-store
+  id: Speedwell
+  banner: steam:287390
+
+- name: Minecraft
+  platform: flathub
+  id: com.mojang.Minecraft
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/86113dc59e768c1d1a462f18a5d458a0.png
+  status: playable
+  notes:
+    - No controller support
+    - Uses a launcher
+
+- name: Minetest
+  platform: flathub
+  id: net.minetest.Minetest
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/4b7a5e62ed921ed7df54741cae0fa89b.png
+  status: playable
+  notes:
+    - No controller support
+
+- name: Moonlight
+  platform: flathub
+  id: com.moonlight_stream.Moonlight
+  banner: /images/flathub/com.moonlight_stream.Moonlight
+  status: playable
+
+- name: Moving Out
+  platform: epic-store
+  id: 8e29583ae4b44a21883038668f7e301e
+  banner: steam:996770
+  status: verified
+
+- name: Mr. Rescue
+  platform: flathub
+  id: dk.tangramgames.mrrescue
+  banner: /images/flathub/dk.tangramgames.mrrescue
+  status: playable
+  notes:
+    - Displays keyboard icons
+
+- name: My Time at Portia
+  platform: epic-store
+  id: Cobra
+  banner: steam:666140
+
+- name: Overcooked
+  platform: epic-store
+  id: Sage
+  banner: steam:448510
+  status: verified
+
+- name: Overcooked! 2
+  platform: epic-store
+  id: Potoo
+  banner: steam:728880
+  status: verified
+
+- name: Pathway
+  platform: epic-store
+  id: 8fceb562623c430db9bb6abf0549c43e
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/107323b791247ca0394de28f514ef194.png
+
+- name: Pikuniku
+  platform: epic-store
+  id: 48619f5656da446abccb727b78cda644
+  banner: steam:572890
+  status: verified
+
+- name: Pine
+  platform: epic-store
+  id: 6d564ff21f9c45b7b782b7113ad60be8
+  banner: steam:1042780
+  status: verified
+
+- name: Prey
+  platform: epic-store
+  id: 52d88e9a6df248da913c8e99f1e4c526
+  banner: steam:480490
+  status: verified
+
+- name: Rebel Galaxy
+  platform: epic-store
+  id: Weaver
+  banner: steam:290300
+
+- name: Relicta
+  platform: epic-store
+  id: b4670484aae24db492f0b468a98fe361
+  banner: steam:941570
+  status: verified
+  compat_tool: Proton-7.1-GE-2
+
+- name: Rocket League
+  platform: epic-store
+  id: Sugar
+  banner: steam:252950
+  status: verified
+
+- name: Shattered Pixel Dungeon
+  platform: flathub
+  id: com.shatteredpixel.shatteredpixeldungeon
+  banner: steam:1769170
+  status: playable
+
+- name: Solitairica
+  platform: epic-store
+  id: 4c76beac4e8a4156aa8dfb9c6db09746
+  banner: steam:463980
+  status: playable
+  notes:
+    - No controller support
+
+- name: 'Sonic 3: Angel Island Revisited'
+  platform: flathub
+  id: org.sonic3air.Sonic3AIR
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/1dec6d605fbdbf9e3bd583f950311d0b.png
+  status: playable
+  notes:
+    - Requires installation of Sonic 3 & Knuckles from Steam
+
+- name: Sonic Mania
+  platform: epic-store
+  id: 818447bb519b46d48d365d5753362796
+  banner: steam:584400
+  status: playable
+  notes:
+    - Crashes when changing video settings
+
+- name: Sonic Robo Blast 2
+  platform: flathub
+  id: org.srb2.SRB2
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/cae4a57bcd2fa803df2270f5d8bbbbae.png
+  status: playable
+  notes:
+    - Displays keyboard icons
+
+- name: Sonic Robo Blast 2 Kart
+  platform: flathub
+  id: org.srb2.SRB2Kart
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/4703af37c2925cf2191b72dcb5f7f286.png
+  status: playable
+
+- name: Spotify
+  platform: flathub
+  id: com.spotify.Client
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/228395bd8e832bff82a6ce90eb27a1f6.png
+  status: playable
+
+- name: SteamWorld Dig 2
+  platform: gog
+  id: 1861082507
+  banner: steam:571310
+  status: verified
+
+- name: StepMania
+  platform: flathub
+  id: com.stepmania.StepMania
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/c4812a5a8c941cf9d496493c0758e886.png
+  status: playable
+
+- name: Stranded Deep
+  platform: epic-store
+  id: 02107cba432c4551a027d25d597adc49
+  banner: steam:313120
+  status: playable
+  notes:
+    - No controller support
+    - Uses a launcher
+
+- name: 'Stranger Things 3: The Game'
+  platform: epic-store
+  id: 0a697c1235fb4706a635cfa33f0306ec
+  banner: steam:1097800
+  status: verified
+
+- name: SuperTux
+  platform: flathub
+  id: org.supertuxproject.SuperTux
+  banner: steam:1572920
+  status: playable
+
+- name: SuperTuxKart
+  platform: flathub
+  id: net.supertuxkart.SuperTuxKart
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/7f1de29e6da19d22b51c68001e7e0e54.png
+  status: playable
+
+- name: Tacoma
+  platform: epic-store
+  id: Flagfin
+  banner: steam:343860
+  status: unsupported
+
+- name: Tanks of Freedom
+  platform: flathub
+  id: in.p1x.TanksOfFreedom
+  banner: /images/flathub/in.p1x.TanksOfFreedom
+  status: playable
+
+- name: Tonight We Riot
+  platform: gog
+  id: 1095982752
+  banner: steam:290690
+  status: verified
+
+- name: SYMMETRY
+  platform: gog
+  id: 1440133968
+  banner: steam:537520
+  status: unsupported
+
+- name: VALORANT
+  platform: epic-store
+  id: 602eb4abc8764c87b7f2607a1ef8c18e
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/3031edd9d9431ac8a6598b5a47997a9c.jpg
+  status: unsupported
+
+- name: Vampyr
+  platform: epic-store
+  id: Nautilus
+  banner: steam:427290
+
+- name: Veloren
+  platform: flathub
+  id: net.veloren.veloren
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/f7dc8baf811e8e7a2602ee7fe5a3a854.png
+  status: playable
+
+- name: Vintage Story
+  platform: flathub
+  id: at.vintagestory.VintageStory
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/60f4bacddeef710675c768a57768844c.png
+  status: playable
+
+- name: Watch Dogs 2
+  platform: epic-store
+  id: Angelonia
+  banner: steam:447040
+
+- name: Windbound
+  platform: epic-store
+  id: a95bf4df6627431ca5baff8173c59635
+  banner: steam:1162130
+  status: unsupported
+
+- name: Xonotic
+  platform: flathub
+  id: org.xonotic.Xonotic
+  banner: https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/220ddf008416e895e6e649a2bba33484.png
+  status: playable
+
+- name: Yooka-Laylee and the Impossible Lair
+  platform: epic-store
+  id: Duckbill
+  banner: steam:846870
+  status: verified
+
+
+
+# Steam games
+
+- name: Rocket League
+  platform: steam
+  id: 252950
+  status: verified
+
+- name: God of War
+  platform: steam
+  id: 1593500
+  status: verified
+  store: humble:god-of-war
+
+- name: SteamWorld Dig 2
+  platform: steam
+  id: 571310
+  status: verified
+  store: humble:steamworld-dig-2
+
+- name: Streets of Rage 4
+  platform: steam
+  id: 985890
+  status: verified
+  store: humble:streets-of-rage-4
+
+- name: Timelie
+  platform: steam
+  id: 1150950
+  status: verified
+
+- name: Tales of Berseria
+  platform: steam
+  id: 429660
+  status: verified
+  store: humble:tales-of-berseria
+
+- name: Retimed
+  platform: steam
+  id: 760810
+  status: verified
+
+- name: Ikenfell
+  platform: steam
+  id: 854940
+  status: verified
+  store: humble:ikenfell
+
+- name: Sunblaze
+  platform: steam
+  id: 1525660
+  status: verified
+  store: humble:sunblaze
+
+- name: Team Sonic Racing
+  platform: steam
+  id: 785260
+  status: verified
+  store: humble:team-sonic-racing
+
+- name: Atomicrops
+  platform: steam
+  id: 757320
+  status: verified
+  store: humble:atomicrops
+
+- name: Narita Boy
+  platform: steam
+  id: 1069530
+  status: verified
+  store: humble:narita-boy
+
+- name: Roki
+  platform: steam
+  id: 1067540
+  status: verified
+  store: humble:roki
+
+- name: Neon Abyss
+  platform: steam
+  id: 788100
+  status: verified
+  store: humble:neon-abyss
+
+- name: Heaven's Vault
+  platform: steam
+  id: 774201
+  status: verified
+
+- name: Psychonauts 2
+  platform: steam
+  id: 607080
+  status: verified
+  store: humble:psychonauts-2
+
+- name: LEGO Worlds
+  platform: steam
+  id: 332310
+  status: verified
+  store: humble:lego-worlds
+
+- name: 'Bro Falls: Ultimate Showdown'
+  platform: steam
+  id: 1590320
+  status: verified
+
+- name: SOULCALIBUR VI
+  platform: steam
+  id: 544750
+  status: verified
+  store: humble:soulcalibur-vi
+
+- name: F1 2020
+  platform: steam
+  id: 1080110
+  status: verified
+
+- name: Skatemasta Tcheco
+  platform: steam
+  id: 619320
+  status: verified
+
+- name: Project Cars 3
+  platform: steam
+  id: 958400
+  status: verified
+  store: humble:project-cars-3
+
+- name: Katamari Damacy REROLL
+  platform: steam
+  id: 848350
+  status: verified
+  store: humble:katamari-damacy-reroll
+
+- name: Brawlhalla
+  platform: steam
+  id: 291550
+  status: verified
+
+- name: Little Nightmares
+  platform: steam
+  id: 424840
+  status: verified
+  store: humble:little-nightmares
+
+- name: Primal Light
+  platform: steam
+  id: 771420
+  status: verified
+
+- name: Death Stranding
+  platform: steam
+  id: 1190460
+  status: verified
+  store: humble:death-stranding
+
+- name: ELEX
+  platform: steam
+  id: 411300
+  status: verified
+  store: humble:elex
+
+- name: WWE 2K BATTLEGROUNDS
+  platform: steam
+  id: 1142100
+  status: verified
+  store: humble:wwe-2k-battlegrounds
+
+- name: 'Trine 4: The Nightmare Prince'
+  platform: steam
+  id: 690640
+  status: verified
+  store: humble:trine-4-the-nightmare-prince
+
+- name: Hotshot Racing
+  platform: steam
+  id: 609920
+  status: verified
+  store: humble:hotshot-racing
+
+- name: Control Ultimate Edition
+  platform: steam
+  id: 870780
+  status: verified
+  store: humble:control-ultimate-edition
+
+- name: Boreal Blade
+  platform: steam
+  id: 598780
+  status: verified
+
+- name: Boomerang Fu
+  platform: steam
+  id: 965680
+  status: verified
+  store: humble:boomerang-fu
+
+- name: Outward
+  platform: steam
+  id: 794260
+  status: verified
+  store: humble:outward
+
+- name: The Wild Eight
+  platform: steam
+  id: 526160
+  status: verified
+  store: humble:the-wild-eight
+
+- name: Valfaris
+  platform: steam
+  id: 600130
+  status: verified
+  store: humble:valfaris
+
+- name: Valkyria Chronicles 4 Complete Edition
+  platform: steam
+  id: 790820
+  status: verified
+  store: humble:valkyria-chronicles-4-complete-edition
+
+- name: Moving Out
+  platform: steam
+  id: 996770
+  status: verified
+  store: humble:moving-out
+
+- name: Lovecraft's Untold Stories
+  platform: steam
+  id: 871420
+  status: verified
+  store: humble:lovecrafts-untold-stories
+
+- name: Ancestors Legacy
+  platform: steam
+  id: 620590
+  status: verified
+  store: humble:ancestors-legacy
+
+- name: Path of Giants
+  platform: steam
+  id: 1181400
+  status: verified
+
+- name: Yuppie Psycho
+  platform: steam
+  id: 597760
+  status: verified
+  store: humble:yuppie-psycho
+
+- name: Struggling
+  platform: steam
+  id: 1035560
+  status: verified
+  store: humble:struggling
+
+- name: GRIS
+  platform: steam
+  id: 683320
+  status: verified
+  store: humble:gris
+
+- name: Spyro Reignited Trilogy
+  platform: steam
+  id: 996580
+  status: verified
+
+- name: BattleBlock Theater
+  platform: steam
+  id: 238460
+  status: verified
+
+- name: Shining Resonance Refrain
+  platform: steam
+  id: 809890
+  status: verified
+  store: humble:shining-resonance-refrain
+
+- name: Overcooked! 2
+  platform: steam
+  id: 728880
+  status: verified
+  store: humble:overcooked-2
+
+- name: Indivisible
+  platform: steam
+  id: 421170
+  status: verified
+  store: humble:indivisible
+
+- name: Children of Morta
+  platform: steam
+  id: 330020
+  status: verified
+  store: humble:children-of-morta
+
+- name: Golf With Your Friends
+  platform: steam
+  id: 431240
+  status: verified
+  store: humble:golf-with-your-friends
+
+- name: Yakuza Kiwami 2
+  platform: steam
+  id: 927380
+  status: verified
+  store: humble:yakuza-kiwami-2
+
+- name: Darksiders III
+  platform: steam
+  id: 606280
+  status: verified
+  store: humble:darksiders-iii
+
+- name: Double Dragon IV
+  platform: steam
+  id: 528610
+  status: verified
+  store: humble:double-dragon-4
+
+- name: Amnesia Rebirth
+  platform: steam
+  id: 999220
+  status: verified
+
+- name: 'ENSLAVED: Odyssey to the West Premium Edition'
+  platform: steam
+  id: 245280
+  status: verified
+  store: humble:enslaved-odyssey-to-the-west-premium-edition
+
+- name: Blasphemous
+  platform: steam
+  id: 774361
+  status: verified
+  store: humble:blasphemous
+
+- name: DuckTales Remastered
+  platform: steam
+  id: 237630
+  status: verified
+
+- name: LEGO Pirates of the Caribbean The Video Game
+  platform: steam
+  id: 311770
+  status: verified
+
+- name: Metal Unit
+  platform: steam
+  id: 1173200
+  status: verified
+  store: humble:metal-unit
+
+- name: BioShock Remastered
+  platform: steam
+  id: 409710
+  status: verified
+  store: humble:bioshock-remastered
+
+- name: Generation Zero
+  platform: steam
+  id: 704270
+  status: verified
+  store: humble:generation-zero
+
+- name: Evoland Legendary Edition
+  platform: steam
+  id: 1020470
+  status: verified
+  store: humble:evoland-legendary-edition
+
+- name: Unrailed!
+  platform: steam
+  id: 1016920
+  status: verified
+  store: humble:unrailed
+
+- name: Strange Brigade
+  platform: steam
+  id: 312670
+  status: verified
+  store: humble:strange-brigade
+
+- name: Forager
+  platform: steam
+  id: 751780
+  status: verified
+  store: humble:forager
+
+- name: Yooka-Laylee and the Impossible Lair
+  platform: steam
+  id: 846870
+  status: verified
+  store: humble:yookalaylee-and-the-impossible-lair
+
+- name: 'Vampire: The Masquerade - Coteries of New York'
+  platform: steam
+  id: 1096410
+  status: verified
+  store: humble:vampire-the-masquerade-coteries-of-new-york
+
+- name: BioShock 2 Remastered
+  platform: steam
+  id: 409720
+  status: verified
+
+- name: NBA 2K20
+  platform: steam
+  id: 1089350
+  status: verified
+
+- name: 'Sundered: Eldritch Edition'
+  platform: steam
+  id: 535480
+  status: verified
+  store: humble:sundered
+
+- name: JumpJet Rex
+  platform: steam
+  id: 329460
+  status: verified
+  store: humble:jumpjet-rex
+
+- name: Super Bit Blaster XL
+  platform: steam
+  id: 865040
+  status: verified
+
+- name: Bit Blaster XL
+  platform: steam
+  id: 433950
+  status: verified
+  store: humble:bit-blaster-xl
+
+- name: BLACKHOLE
+  platform: steam
+  id: 322680
+  status: verified
+  store: humble:blackhole
+
+- name: Rayman Origins
+  platform: steam
+  id: 207490
+  status: verified
+
+- name: 'The Coma 2: Vicious Sisters'
+  platform: steam
+  id: 1045720
+  status: verified
+  store: humble:the-coma-2-vicious-sisters
+
+- name: Void Bastards
+  platform: steam
+  id: 857980
+  status: verified
+  store: humble:void-bastards
+
+- name: F1 2018
+  platform: steam
+  id: 737800
+  status: verified
+
+- name: Hello Neighbor
+  platform: steam
+  id: 521890
+  status: verified
+  store: humble:hello-neighbor
+
+- name: Automachef
+  platform: steam
+  id: 984800
+  status: verified
+  store: humble:automachef
+
+- name: Basingstoke
+  platform: steam
+  id: 336940
+  status: verified
+  store: humble:basingstoke
+
+- name: DiRT Rally
+  platform: steam
+  id: 310560
+  status: verified
+
+- name: EARTHLOCK
+  platform: steam
+  id: 761030
+  status: verified
+  store: humble:earthlock
+
+- name: Sonic CD
+  platform: steam
+  id: 200940
+  status: verified
+
+- name: Fantasy Strike
+  platform: steam
+  id: 390560
+  status: verified
+
+- name: 'Battle Chasers: Nightwar'
+  platform: steam
+  id: 451020
+  status: verified
+  store: humble:battle-chasers-nightwar
+
+- name: Journey
+  platform: steam
+  id: 638230
+  status: verified
+
+- name: Into the Breach
+  platform: steam
+  id: 590380
+  status: verified
+  store: humble:into-the-breach
+
+- name: Lethal League Blaze
+  platform: steam
+  id: 553310
+  status: verified
+  store: humble:lethal-league-blaze
+
+- name: Remnants of Naezith
+  platform: steam
+  id: 590590
+  status: verified
+  store: humble:remnants-of-naezith
+
+- name: Bayonetta
+  platform: steam
+  id: 460790
+  status: verified
+  store: humble:bayonetta
+
+- name: Overload
+  platform: steam
+  id: 448850
+  status: verified
+  store: humble:overload
+
+- name: The King's Bird
+  platform: steam
+  id: 812550
+  status: verified
+  store: humble:the-kings-bird
+
+- name: Jurassic World Evolution
+  platform: steam
+  id: 648350
+  status: verified
+  store: humble:jurassic-world-evolution
+
+- name: "Hellblade: Senua's Sacrifice"
+  platform: steam
+  id: 414340
+  status: verified
+  store: humble:hellblade-senuas-sacrifice
+
+- name: Heave Ho
+  platform: steam
+  id: 905340
+  status: verified
+  store: humble:heave-ho
+
+- name: Felix the Reaper
+  platform: steam
+  id: 919410
+  status: verified
+  store: humble:felix-the-reaper
+
+- name: The Messenger
+  platform: steam
+  id: 764790
+  status: verified
+  store: humble:the-messenger
+
+- name: "The Swords of Ditto: Mormo's Curse"
+  platform: steam
+  id: 619780
+  status: verified
+  store: humble:the-swords-of-ditto-mormos-curse
+
+- name: Horace
+  platform: steam
+  id: 629090
+  status: verified
+  store: humble:horace
+
+- name: Chess Ultra
+  platform: steam
+  id: 518060
+  status: verified
+
+- name: Manual Samuel - Anniversary Edition
+  platform: steam
+  id: 504130
+  status: verified
+  store: humble:manual-samuel
+
+- name: 'Ni no Kuni II: Revenant Kingdom'
+  platform: steam
+  id: 589360
+  status: verified
+  store: humble:ni-no-kuni-2-revenant-kingdom
+
+- name: This Is the Police 2
+  platform: steam
+  id: 785740
+  status: verified
+  store: humble:this-is-the-police-2
+
+- name: Ultimate Marvel vs. Capcom 3
+  platform: steam
+  id: 357190
+  status: verified
+  store: humble:ultimate-marvel-vs-capcom-3
+
+- name: HITMAN 2
+  platform: steam
+  id: 863550
+  status: verified
+  store: humble:hitman-2
+
+- name: Katana ZERO
+  platform: steam
+  id: 460950
+  status: verified
+  store: humble:katana-zero
+
+- name: DiRT Rally 2.0
+  platform: steam
+  id: 690790
+  status: verified
+
+- name: DiRT 4
+  platform: steam
+  id: 421020
+  status: verified
+
+- name: Runner3
+  platform: steam
+  id: 516130
+  status: verified
+  store: humble:runner3
+
+- name: Micro Machines World Series
+  platform: steam
+  id: 535850
+  status: verified
+
+- name: Super Star Path
+  platform: steam
+  id: 375120
+  status: verified
+
+- name: Atari Vault
+  platform: steam
+  id: 400020
+  status: verified
+  store: humble:atari-vault
+
+- name: DEAD OR ALIVE 6
+  platform: steam
+  id: 838380
+  status: verified
+  store: humble:dead-or-alive-6
+
+- name: Anode
+  platform: steam
+  id: 401120
+  status: verified
+
+- name: F1 2019
+  platform: steam
+  id: 928600
+  status: verified
+
+- name: Among the Sleep
+  platform: steam
+  id: 250620
+  status: verified
+  store: humble:among-the-sleep
+
+- name: Etherborn
+  platform: steam
+  id: 812160
+  status: verified
+  store: humble:etherborn
+
+- name: "Death's Gambit: Afterlife"
+  platform: steam
+  id: 356650
+  status: verified
+
+- name: Aegis Defenders
+  platform: steam
+  id: 371140
+  status: verified
+  store: humble:aegis-defenders
+
+- name: Action Henk
+  platform: steam
+  id: 285820
+  status: verified
+  store: humble:action-henk
+
+- name: '140'
+  platform: steam
+  id: 242820
+  status: verified
+  store: humble:140
+
+- name: "Fell Seal: Arbiter's Mark"
+  platform: steam
+  id: 699170
+  status: verified
+  store: humble:fell-seal-arbiters-mark
+
+- name: My Friend Pedro
+  platform: steam
+  id: 557340
+  status: verified
+  store: humble:my-friend-pedro
+
+- name: Descenders
+  platform: steam
+  id: 681280
+  status: verified
+  store: humble:descenders
+
+- name: Book of Demons
+  platform: steam
+  id: 449960
+  status: verified
+  store: humble:book-of-demons
+
+- name: Okami HD
+  platform: steam
+  id: 587620
+  status: verified
+  store: humble:okami-hd
+
+- name: Eliza
+  platform: steam
+  id: 716500
+  status: verified
+  store: humble:eliza
+
+- name: F1 2015
+  platform: steam
+  id: 286570
+  status: verified
+
+- name: 'Deus Ex: Mankind Divided'
+  platform: steam
+  id: 337000
+  status: verified
+  store: humble:deus-ex-mankind-divided
+
+- name: 'Middle-earth: Shadow of War'
+  platform: steam
+  id: 356190
+  status: verified
+  store: humble:middleearth-shadow-of-war
+
+- name: Them's Fightin' Herds
+  platform: steam
+  id: 574980
+  status: verified
+  store: humble:thems-fightin-herds
+
+- name: 'Spec Ops: The Line'
+  platform: steam
+  id: 50300
+  status: verified
+  store: humble:spec-ops-the-line
+
+- name: Victor Vran
+  platform: steam
+  id: 345180
+  status: verified
+  store: humble:victor-vran
+
+- name: Skyhook
+  platform: steam
+  id: 361350
+  status: verified
+  store: humble:skyhook
+
+- name: Trailmakers
+  platform: steam
+  id: 585420
+  status: verified
+  store: humble:trailmakers
+
+- name: Mages of Mystralia
+  platform: steam
+  id: 529660
+  status: verified
+  store: humble:mages-of-mystralia
+
+- name: 'Bad North: Jotunn Edition'
+  platform: steam
+  id: 688420
+  status: verified
+  store: humble:bad-north-jotunn-edition
+
+- name: 'GRIP: Combat Racing'
+  platform: steam
+  id: 396900
+  status: verified
+  store: humble:grip-combat-racing
+
+- name: Graveyard Keeper
+  platform: steam
+  id: 599140
+  status: verified
+  store: humble:graveyard-keeper
+
+- name: Jet Set Radio
+  platform: steam
+  id: 205950
+  status: verified
+  store: humble:jet-set-radio
+
+- name: 'Trine 3: The Artifacts of Power'
+  platform: steam
+  id: 319910
+  status: verified
+  store: humble:trine-3-the-artifacts-of-power
+
+- name: 'Alien: Isolation'
+  platform: steam
+  id: 214490
+  status: verified
+  store: humble:alien-isolation
+
+- name: Dying Light
+  platform: steam
+  id: 239140
+  status: verified
+
+- name: 'Batman: Arkham Origins'
+  platform: steam
+  id: 209000
+  status: verified
+  store: humble:batman-arkham-origins
+
+- name: The Talos Principle
+  platform: steam
+  id: 257510
+  status: verified
+  store: humble:the-talos-principle
+
+- name: 'XCOM: Enemy Unknown'
+  platform: steam
+  id: 200510
+  status: verified
+  store: humble:xcom-enemy-unknown
+
+- name: Invisigun Reloaded
+  platform: steam
+  id: 375750
+  status: verified
+  store: humble:invisigun-reloaded
+
+- name: 'Middle-earth: Shadow of Mordor'
+  platform: steam
+  id: 241930
+  status: verified
+
+- name: 'Amnesia: The Dark Descent'
+  platform: steam
+  id: 57300
+  status: verified
+  store: humble:amnesia-the-dark-descent
+
+- name: Brutal Legend
+  platform: steam
+  id: 225260
+  status: verified
+  store: humble:brutal-legend
+
+- name: Costume Quest 2
+  platform: steam
+  id: 275180
+  status: verified
+  store: humble:costume-quest-2
+
+- name: Costume Quest
+  platform: steam
+  id: 115100
+  status: verified
+  store: humble:costume-quest
+
+- name: F1 2017
+  platform: steam
+  id: 515220
+  status: verified
+
+- name: HITMAN
+  platform: steam
+  id: 236870
+  status: verified
+
+- name: EVERSPACE
+  platform: steam
+  id: 396750
+  status: verified
+  store: humble:everspace
+
+- name: Don't Starve
+  platform: steam
+  id: 219740
+  status: verified
+  store: humble:dont-starve
+
+- name: 'The Witcher 3: Wild Hunt'
+  platform: steam
+  id: 292030
+  status: verified
+
+- name: Chariot
+  platform: steam
+  id: 319450
+  status: verified
+  store: humble:chariot
+
+- name: Life is Strange 2
+  platform: steam
+  id: 532210
+  status: verified
+
+- name: Shadow of the Tomb Raider
+  platform: steam
+  id: 750920
+  status: verified
+  store: humble:shadow-of-the-tomb-raider-definitive-edition
+
+- name: Horizon Chase Turbo
+  platform: steam
+  id: 389140
+  status: verified
+  store: humble:horizon-chase-turbo
+
+- name: Regular Human Basketball
+  platform: steam
+  id: 661940
+  status: verified
+  store: humble:regular-human-basketball
+
+- name: The Long Dark
+  platform: steam
+  id: 305620
+  status: verified
+  store: humble:the-long-dark
+
+- name: PixelJunk Monsters Ultimate
+  platform: steam
+  id: 243780
+  status: verified
+  store: humble:pixeljunk-monsters-ultimate
+
+- name: Little Racers STREET
+  platform: steam
+  id: 262690
+  status: verified
+
+- name: The Disney Afternoon Collection
+  platform: steam
+  id: 525040
+  status: verified
+  store: humble:the-disney-afternoon-collection
+
+- name: 'Wolfenstein: The New Order'
+  platform: steam
+  id: 201810
+  status: verified
+  store: humble:wolfenstein-the-new-order
+
+- name: 'Ori and the Blind Forest: Definitive Edition'
+  platform: steam
+  id: 387290
+  status: verified
+
+- name: 'Turok 2: Seeds of Evil'
+  platform: steam
+  id: 405830
+  status: verified
+  store: humble:turok-2-seeds-of-evil
+
+- name: Crazy Taxi
+  platform: steam
+  id: 71230
+  status: verified
+  store: humble:crazy-taxi
+
+- name: Sonic Adventure DX
+  platform: steam
+  id: 71250
+  status: verified
+  store: humble:sonic-adventure-dx
+
+- name: DOOM
+  platform: steam
+  id: 379720
+  status: verified
+  store: humble:doom
+
+- name: Disgaea 2 PC
+  platform: steam
+  id: 495280
+  status: verified
+  store: humble:disgaea-2-pc
+
+- name: Broken Age
+  platform: steam
+  id: 232790
+  status: verified
+  store: humble:broken-age
+
+- name: BioShock Infinite
+  platform: steam
+  id: 8870
+  status: verified
+  store: humble:bioshock-infinite
+
+- name: Yakuza Kiwami
+  platform: steam
+  id: 834530
+  status: verified
+  store: humble:yakuza-kiwami
+
+- name: My Time At Portia
+  platform: steam
+  id: 666140
+  status: verified
+  store: humble:my-time-at-portia
+
+- name: Sky Rogue
+  platform: steam
+  id: 381020
+  status: verified
+  store: humble:sky-rogue
+
+- name: '1 Screen Platformer'
+  platform: steam
+  id: 791180
+  status: verified
+
+- name: Return Of The Zombie King
+  platform: steam
+  id: 1152020
+  status: verified
+
+- name: 'Mark of the Ninja: Remastered'
+  platform: steam
+  id: 860950
+  status: verified
+
+- name: 'Life is Strange: Before the Storm'
+  platform: steam
+  id: 554620
+  status: verified
+  store: humble:life-is-strange-before-the-storm
+
+- name: Rise of the Tomb Raider
+  platform: steam
+  id: 391220
+  status: verified
+
+- name: Portal 2
+  platform: steam
+  id: 620
+  status: verified
+
+- name: Race Arcade
+  platform: steam
+  id: 355010
+  status: verified
+
+- name: Life is Strange
+  platform: steam
+  id: 319630
+  status: verified
+
+- name: "Oddworld: New 'n' Tasty"
+  platform: steam
+  id: 314660
+  status: verified
+  store: humble:oddworld-new-n-tasty
+
+- name: A Story About My Uncle
+  platform: steam
+  id: 278360
+  status: verified
+  store: humble:a-story-about-my-uncle
+
+- name: SteamWorld Heist
+  platform: steam
+  id: 322190
+  status: verified
+  store: humble:steamworld-heist
+
+- name: 'South Park: The Stick of Truth'
+  platform: steam
+  id: 213670
+  status: verified
+
+- name: Toki Tori 2+
+  platform: steam
+  id: 201420
+  status: verified
+  store: humble:toki-tori-2
+
+- name: Castle Crashers
+  platform: steam
+  id: 204360
+  status: verified
+
+- name: Crash Bandicoot N. Sane Trilogy
+  platform: steam
+  id: 731490
+  status: verified
+
+- name: Roundabout
+  platform: steam
+  id: 303430
+  status: verified
+  store: humble:roundabout
+
+- name: Enter the Gungeon
+  platform: steam
+  id: 311690
+  status: verified
+  store: humble:enter-the-gungeon
+
+- name: Guacamelee! Super Turbo Championship Edition
+  platform: steam
+  id: 275390
+  status: verified
+  store: humble:guacamelee-super-turbo-championship-edition
+
+- name: PixelJunk Shooter
+  platform: steam
+  id: 255870
+  status: verified
+  store: humble:pixeljunk-shooter
+
+- name: Monster Trampoline
+  platform: steam
+  id: 939560
+  status: verified
+
+- name: Wizorb
+  platform: steam
+  id: 207420
+  status: verified
+  store: humble:wizorb
+
+- name: BlazeRush
+  platform: steam
+  id: 302710
+  status: verified
+  store: humble:blazerush
+
+- name: Toybox Turbos
+  platform: steam
+  id: 287260
+  status: verified
+
+- name: The Jackbox Party Pack 5
+  platform: steam
+  id: 774461
+  status: verified
+  store: humble:the-jackbox-party-pack-5
+
+- name: The Jackbox Party Pack 4
+  platform: steam
+  id: 610180
+  status: verified
+  store: humble:the-jackbox-party-pack-4
+
+- name: The Jackbox Party Pack 3
+  platform: steam
+  id: 434170
+  status: verified
+  store: humble:the-jackbox-party-pack-3
+
+- name: The Jackbox Party Pack 2
+  platform: steam
+  id: 397460
+  status: verified
+  store: humble:the-jackbox-party-pack-2
+
+- name: The Jackbox Party Pack
+  platform: steam
+  id: 331670
+  status: verified
+  store: humble:the-jackbox-party-pack
+
+- name: Bot Vice
+  platform: steam
+  id: 491040
+  status: verified
+
+- name: 'BIT.TRIP Presents... Runner2: Future Legend of Rhythm Alien'
+  platform: steam
+  id: 218060
+  status: verified
+  store: humble:bittrip-presents-runner2-future-legend-of-rhythm-alien
+
+- name: Sonic Mania
+  platform: steam
+  id: 584400
+  status: verified
+  store: humble:sonic-mania
+
+- name: 'Bloodstained: Ritual of the Night'
+  platform: steam
+  id: 692850
+  status: verified
+  store: humble:bloodstained-ritual-of-the-night
+
+- name: Gang Beasts
+  platform: steam
+  id: 285900
+  status: verified
+  store: humble:gang-beasts
+
+- name: Thomas Was Alone
+  platform: steam
+  id: 220780
+  status: verified
+
+- name: Terraria
+  platform: steam
+  id: 105600
+  status: verified
+  store: humble:terraria
+
+- name: SpeedRunners
+  platform: steam
+  id: 207140
+  status: verified
+  store: humble:speedrunners
+
+- name: PAC-MAN 256
+  platform: steam
+  id: 455400
+  status: verified
+
+- name: Hyper Light Drifter
+  platform: steam
+  id: 257850
+  status: verified
+  store: humble:hyper-light-drifter
+
+- name: OlliOlli
+  platform: steam
+  id: 274250
+  status: verified
+  store: humble:olliolli
+
+- name: Mad Max
+  platform: steam
+  id: 234140
+  status: verified
+  store: humble:mad-max
+
+- name: Tomb Raider
+  platform: steam
+  id: 203160
+  status: verified
+
+- name: TEKKEN 7
+  platform: steam
+  id: 389730
+  status: verified
+  store: humble:tekken-7
+
+- name: Turok
+  platform: steam
+  id: 405820
+  status: verified
+  store: humble:turok
+
+- name: Transistor
+  platform: steam
+  id: 237930
+  status: verified
+
+- name: Super Meat Boy
+  platform: steam
+  id: 40800
+  status: verified
+  store: humble:super-meat-boy
+
+- name: SteamWorld Dig
+  platform: steam
+  id: 252410
+  status: verified
+  store: humble:steamworld-dig
+
+- name: Spelunky
+  platform: steam
+  id: 239350
+  status: verified
+
+- name: Sky Force Anniversary
+  platform: steam
+  id: 355050
+  status: verified
+
+- name: Rogue Legacy
+  platform: steam
+  id: 241600
+  status: verified
+  store: humble:rogue-legacy
+
+- name: One Ship Two Ship Redshift Blueshift
+  platform: steam
+  id: 367430
+  status: verified
+
+- name: Owlboy
+  platform: steam
+  id: 115800
+  status: verified
+  store: humble:owlboy
+
+- name: 'OlliOlli2: Welcome to Olliwood'
+  platform: steam
+  id: 365660
+  status: verified
+  store: humble:olliolli2-welcome-to-olliwood
+
+- name: Neon Drive
+  platform: steam
+  id: 433910
+  status: verified
+  store: humble:neon-drive
+
+- name: LIMBO
+  platform: steam
+  id: 48000
+  status: verified
+  store: humble:limbo
+
+- name: Lethal League
+  platform: steam
+  id: 261180
+  status: verified
+  store: humble:lethal-league
+
+- name: Keep Talking and Nobody Explodes
+  platform: steam
+  id: 341800
+  status: verified
+  store: humble:keep-talking-and-nobody-explodes
+
+- name: Iconoclasts
+  platform: steam
+  id: 393520
+  status: verified
+  store: humble:iconoclasts
+
+- name: FEZ
+  platform: steam
+  id: 224760
+  status: verified
+  store: humble:fez
+
+- name: Escape Goat 2
+  platform: steam
+  id: 255340
+  status: verified
+  store: humble:escape-goat-2
+
+- name: Escape Goat
+  platform: steam
+  id: 251370
+  status: verified
+  store: humble:escape-goat
+
+- name: 'Dust: An Elysian Tail'
+  platform: steam
+  id: 236090
+  status: verified
+  store: humble:dust-an-elysian-tail
+
+- name: The Count Lucanor
+  platform: steam
+  id: 440880
+  status: verified
+  store: humble:the-count-lucanor
+
+- name: Chasm
+  platform: steam
+  id: 312200
+  status: verified
+  store: humble:chasm
+
+- name: Braid
+  platform: steam
+  id: 26800
+  status: verified
+  store: humble:braid
+
+- name: Birdsketball
+  platform: steam
+  id: 470470
+  status: verified
+
+- name: Bastion
+  platform: steam
+  id: 107100
+  status: verified
+  store: humble:bastion
+
+- name: TowerFall Ascension
+  platform: steam
+  id: 251470
+  status: verified
+  store: humble:towerfall-ascension
+
+- name: Dead Cells
+  platform: steam
+  id: 588650
+  status: verified
+  store: humble:dead-cells
+
+- name: Axiom Verge
+  platform: steam
+  id: 332200
+  status: verified
+  store: humble:axiom-verge
+
+- name: Hollow Knight
+  platform: steam
+  id: 367520
+  status: verified
+  store: humble:hollow-knight
+
+- name: 'Shovel Knight: Treasure Trove'
+  platform: steam
+  id: 250760
+  status: verified
+  store: humble:shovel-knight-treasure-trove
+
+- name: Lovers in a Dangerous Spacetime
+  platform: steam
+  id: 252110
+  status: verified
+  store: humble:lovers-in-a-dangerous-spacetime
+
+- name: Celeste
+  platform: steam
+  id: 504230
+  status: verified
+  store: humble:celeste
+
+- name: Assault Android Cactus
+  platform: steam
+  id: 250110
+  status: verified
+  store: humble:assault-android-cactus
+
+- name: Overcooked
+  platform: steam
+  id: 448510
+  status: verified
+  store: humble:overcooked
+
+- name: Mortal Kombat Komplete Edition
+  platform: steam
+  id: 237110
+  status: verified
+
+- name: GRID
+  platform: steam
+  id: 12750
+  status: verified
+
+- name: DiRT 2
+  platform: steam
+  id: 12840
+  status: playable
+  notes:
+    - Customizing player name requires a keyboard
+
+- name: DiRT 3 Complete Edition
+  platform: steam
+  id: 321040
+  status: verified
