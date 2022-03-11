@@ -1,520 +1,200 @@
 {{> header}}
 
-<div class="content">
-<p>
-The games listed below are tested and certified for out of the box compatibility with ChimeraOS.
-See the <a href="/criteria">certification criteria</a>.
-</p>
+<script defer src="https://unpkg.com/alpinejs@3.9.0/dist/cdn.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js" integrity="sha512-CSBhVREyzHAjAFfBlIBakjoRUKp5h7VSweP0InR/pAJyptH7peuhCsqAI/snV+TwZmXZqoUklpXp6R6wMnYf5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<p>
-Follow our <a href="https://store.steampowered.com/curator/35483972-gamer-os">curator</a> to see game compatibility information in the Steam store.
-</p>
 
-<p>
-Not all compatible games are shown. See <a href="https://protondb.com">ProtonDB</a> for more.
-</p>
 
-<p>
-Use the <a href="https://www.humblebundle.com/?partner=chimera">Humble Bundle</a> links below to purchase games and support ChimeraOS.
-</p>
+<style>
 
+body {
+	color: white;
+	background-color: #230512;
+}
+
+.card {
+	display: inline-block;
+	margin: 5px;
+	text-align: center;
+	border-style: solid;
+	border-width: 1px;
+	border-color: white;
+	color: black;
+	width: 230px;
+	height: 150px;
+	overflow: hidden;
+	font-size: 16px;
+}
+
+.card .left-content {
+	max-width: fit-content;
+}
+
+.verified {
+	background-color: #e6ffe6;
+}
+.playable {
+	background-color: #ffffe6;
+}
+.unsupported {
+	background-color: #ffe6e6;
+}
+
+p {
+	margin: 0px;
+	padding: 8px;
+}
+
+.status-bar {
+	cursor: pointer;
+}
+
+.notes {
+	list-style: none;
+	padding-left: 0;
+}
+
+.notes li:before {
+	content: "⚠️";
+	margin: 0 10px 0 0;
+}
+
+.full {
+	width: 230px;
+	height: 145px;
+}
+
+</style>
+
+<script>
+
+function clean(input) {
+	if (!input) {
+		return '';
+	}
+	return input.replace(/[^0-9a-z]/gi, '').toLowerCase();
+}
+
+function app() {
+	return {
+		search: '',
+		platform: 'steam',
+		status: ['verified', 'playable'],
+		showInfoID: null,
+
+		items: [],
+
+		get filteredItems() {
+			return this.items.filter(
+				i => (!this.search || clean(i.name).includes(clean(this.search))) && i.platform === this.platform && this.status.includes(i.status)
+			)
+		},
+
+		async init() {
+			const response = await fetch('gamedb.yaml');
+			const data = await response.text();
+			console.log(data);
+			this.items = jsyaml.load(data);
+
+			this.items.forEach(e => {
+				// expand banner property
+				if (e.platform === 'steam' && !e.banner) {
+					e.banner = `https://cdn.akamai.steamstatic.com/steam/apps/${e.id}/header.jpg`;
+				}
+
+				if (e.banner.startsWith('steam:')) {
+					e.banner = `https://cdn.akamai.steamstatic.com/steam/apps/${e.banner.slice(6)}/header.jpg`;
+				}
+
+				if (e.banner.startsWith('/images/flathub')) {
+					e.banner = `https://github.com/ChimeraOS/chimera/raw/master/${e.banner}.png`;
+				}
+
+				// expand store property
+				if (e.platform === 'steam' && !e.store) {
+					e.store = `https://store.steampowered.com/app/${e.id}`;
+				}
+
+				if (e.store && e.store.startsWith('humble:')) {
+					e.store = `https://www.humblebundle.com/store/${e.store.slice(7)}?partner=chimera`;
+				}
+			});
+		},
+
+		getStatusDisplay(status) {
+			if (status === 'verified') return '🟢 Verified';
+			if (status === 'playable') return '🟡 Playable';
+			if (status === 'unsupported') return '🔴 Unsupported';
+		},
+
+		toggleInfo(id) {
+			if (this.showInfoID === id) {
+				this.showInfoID = null;
+			} else {
+				this.showInfoID = id;
+			}
+		},
+
+		shouldShowInfo(item) {
+			return item.id === this.showInfoID && item.notes;
+		},
+
+		getInfoIcon(notes) {
+			if (notes) {
+				return ' ℹ️ ';
+			}
+
+			return '';
+		},
+	};
+}
+
+</script>
+
+<br>
+<br>
+<div x-data="app()">
+	<div class="left-content">
+	<input type="checkbox" id="verified" value="verified" x-model="status">
+	<label for="verified" x-text="getStatusDisplay('verified')"></label><br>
+	<input type="checkbox" id="playable" value="playable" x-model="status">
+	<label for="playable" x-text="getStatusDisplay('playable')"></label><br>
+	<input type="checkbox" id="unsupported" value="unsupported" x-model="status">
+	<label for="unsupported"x-text="getStatusDisplay('unsupported')"></label><br>
+	</div>
+	<p><a href="/status">Status Details</a></p>
+	<br>
+	<input x-model="search" placeholder="Search...">
+	<select x-model="platform">
+		<option value="epic-store">Epic Games Store</option>
+		<option value="flathub">Flathub</option>
+		<option value="gog">GOG</option>
+		<option value="steam">Steam</option>
+	</select>
+
+	<br>
+	<br>
+
+	<template x-for="item in filteredItems">
+		<div class="card" :class="item.status">
+			<template x-if="!item.store">
+				<img x-show="!shouldShowInfo(item)" width="230" height="108" :src="item.banner" loading="lazy">
+			</template>
+			<template x-if="item.store">
+			<a :href="item.store">
+				<img x-show="!shouldShowInfo(item)" width="230" height="108" :src="item.banner" loading="lazy">
+			</a>
+			</template>
+			<div class="left-content" :class="{ 'status-bar': item.notes, 'full': shouldShowInfo(item) }" @click="toggleInfo(item.id)">
+				<p x-show="!shouldShowInfo(item)" x-text="`${getStatusDisplay(item.status)}${getInfoIcon(item.notes)}`"></p>
+				<ul class="notes" x-show="shouldShowInfo(item)">
+					<template x-for="note in item.notes">
+						<li x-text="note"></li>
+					</template>
+				</ul>
+			</div>
+		</div>
+	</template>
 </div>
-
-
-<a href="https://www.humblebundle.com/store/god-of-war?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/streets-of-rage-4?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/985890/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/steamworld-dig-2?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/571310/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/1150950">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1150950/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/tales-of-berseria?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/429660/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/760810">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/760810/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/ikenfell?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/854940/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/sunblaze?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1525660/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/team-sonic-racing?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/785260/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/atomicrops?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/757320/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/narita-boy?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1069530/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/roki?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1067540/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/neon-abyss?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/788100/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/774201">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/774201/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/psychonauts-2?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/607080/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/lego-worlds?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/332310/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/1590320">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1590320/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/soulcalibur-vi?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/544750/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/1080110">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1080110/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/619320">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/619320/capsule_231x87.jpg" loading="lazy"></a>
-</a>
-<a href="https://www.humblebundle.com/store/project-cars-3?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/958400/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/katamari-damacy-reroll?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/848350/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/291550">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291550/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/little-nightmares?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/424840/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/771420">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/771420/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/death-stranding?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/elex?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/411300/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/wwe-2k-battlegrounds?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1142100/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/trine-4-the-nightmare-prince?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/690640/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/hotshot-racing?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/609920/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/control?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/870780/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/598780">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/598780/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/boomerang-fu?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/965680/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/outward?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/794260/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/the-wild-eight?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/526160/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/valfaris?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/600130/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/valkyria-chronicles-4-complete-edition?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/790820/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/moving-out?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/996770/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/lovecrafts-untold-stories?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/871420/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/ancestors-legacy?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/620590/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/1181400">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1181400/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/yuppie-psycho?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/597760/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/struggling?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1035560/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/gris?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/683320/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/996580">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/996580/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/238460">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/238460/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/shining-resonance-refrain?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/809890/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/overcooked-2?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/728880/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/indivisible?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/421170/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/children-of-morta?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/330020/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/golf-with-your-friends?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/431240/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/yakuza-kiwami-2?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/927380/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/darksiders-iii?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/606280/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/double-dragon-4?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/528610/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/999220">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/999220/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/enslaved-odyssey-to-the-west-premium-edition?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/245280/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/blasphemous?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/774361/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/237630">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237630/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/311770">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/311770/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/metal-unit?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1173200/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/bioshock-remastered?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/409710/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/generation-zero?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/704270/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/evoland-legendary-edition?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1020470/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/unrailed?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1016920/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/strange-brigade?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/312670/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/forager?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/751780/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/yookalaylee-and-the-impossible-lair?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/846870/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/vampire-the-masquerade-coteries-of-new-york?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1096410/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/409720">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/409720/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/nba-2k20?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1089350/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/sundered?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/535480/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/jumpjet-rex?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/329460/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/865040">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/865040/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/bit-blaster-xl?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/433950/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/blackhole?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/322680/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/207490">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/207490/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/the-coma-2-vicious-sisters?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1045720/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/void-bastards?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/857980/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/737800">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/737800/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/hello-neighbor?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/521890/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/automachef?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/984800/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/basingstoke?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/336940/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/310560">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/310560/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/earthlock?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/761030/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/200940">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/200940/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/390560">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/390560/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/battle-chasers-nightwar?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/451020/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/638230">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/638230/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/into-the-breach?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/590380/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/lethal-league-blaze?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/553310/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/remnants-of-naezith?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/590590/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/bayonetta?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/460790/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/overload?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/448850/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/the-kings-bird?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/812550/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/jurassic-world-evolution?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/648350/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/hellblade-senuas-sacrifice?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/414340/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/heave-ho?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/905340/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/felix-the-reaper?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/919410/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/the-messenger?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/764790/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/the-swords-of-ditto-mormos-curse?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/619780/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/horace?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/629090/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/518060">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/518060/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/manual-samuel?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/504130/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/ni-no-kuni-2-revenant-kingdom?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/589360/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/this-is-the-police-2?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/785740/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/ultimate-marvel-vs-capcom-3?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/357190/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/hitman-2?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/863550/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/katana-zero?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/460950/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/690790">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/690790/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/421020">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/421020/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/runner3?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/516130/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/535850">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/535850/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://store.steampowered.com/app/375120">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/375120/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/atari-vault?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/400020/capsule_231x87.jpg" loading="lazy">
-</a>
-<a href="https://www.humblebundle.com/store/dead-or-alive-6?partner=chimera">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/838380/capsule_231x87.jpg" loading="lazy">
-</a>
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/401120/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/928600/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/250620/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/812160/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/356650/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/371140/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/285820/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/242820/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/699170/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/557340/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/681280/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/449960/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/587620/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/716500/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/286570/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/337000/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/356190/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/574980/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/50300/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/345180/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/361350/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/585420/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/529660/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/688420/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/396900/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/599140/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/205950/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/319910/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/214490/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/239140/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/209000/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/257510/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/200510/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/375750/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/241930/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/57300/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/225260/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/275180/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/115100/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/515220/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/236870/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/396750/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/219740/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/319450/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/532210/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/750920/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/389140/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/661940/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/305620/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/243780/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/262690/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/525040/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/201810/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/387290/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/405830/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/71230/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/71250/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/379720/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/495280/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/232790/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/8870/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/834530/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/666140/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/381020/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/791180/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1152020/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/860950/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/554620/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/391220/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/620/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/355010/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/319630/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/314660/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/278360/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/322190/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/213670/capsule_231x87.jpg" width=231 height=87 loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/201420/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/204360/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/731490/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/303430/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/311690/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/275390/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/255870/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/939560/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/207420/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/302710/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/287260/capsule_231x87.jpg" width=231 height=87 loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/774461/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/610180/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/434170/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/397460/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/331670/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/491040/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/218060/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/584400/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/692850/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/285900/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/220780/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/105600/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/207140/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/455400/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/257850/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/274250/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234140/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/203160/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/389730/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/405820/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237930/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/40800/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/252410/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/239350/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/355050/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/241600/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/367430/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/115800/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/365660/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/433910/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/48000/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/261180/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/341800/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/393520/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/224760/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/255340/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/251370/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/236090/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/440880/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/312200/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/26800/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/470470/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/107100/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/251470/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/588650/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/332200/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/367520/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/250760/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/252110/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/504230/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/250110/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/448510/capsule_231x87.jpg" loading="lazy">
-
-
-
-<a href="https://store.steampowered.com/app/237110">
-	<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237110/capsule_231x87.jpg" loading="lazy">
-</a>
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12750/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12840/capsule_231x87.jpg" loading="lazy">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/321040/capsule_231x87.jpg" loading="lazy">
-
 
 {{> footer}}

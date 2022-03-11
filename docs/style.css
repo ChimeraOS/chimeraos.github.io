@@ -162,3 +162,12 @@ a:hover .button {
 	max-width: 900px;
 	padding: 20px;
 }
+.left-content {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    max-width: 900px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
