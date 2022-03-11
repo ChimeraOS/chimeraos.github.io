@@ -125,7 +125,6 @@ function app() {
 		async init() {
 			const response = await fetch('https://raw.githubusercontent.com/ChimeraOS/chimera-data/master/gamedb.yaml');
 			const data = await response.text();
-			console.log(data);
 			this.items = jsyaml.load(data);
 
 			this.items.forEach(e => {
