@@ -123,7 +123,7 @@ function app() {
 		},
 
 		async init() {
-			const response = await fetch('gamedb.yaml');
+			const response = await fetch('/gamedb.yaml');
 			const data = await response.text();
 			console.log(data);
 			this.items = jsyaml.load(data);
