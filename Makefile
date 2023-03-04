@@ -1,12 +1,8 @@
-#PARTIALS=footer.mustache header.mustache
+build: clean
+	npx eleventy
 
-all: docs/index.html docs/download.html docs/games.html docs/about.html docs/contribute.html docs/status.html docs/style.css docs/blog/proton-ge.html docs/blog/steam-deck.html
+serve: build
+	npx eleventy --serve
 
-docs/%.html: %.mustache
-	npx mustache -p partials/header.mustache -p partials/footer.mustache data.json $< > $@
-
-docs/blog/%.html: blog/%.mustache
-	npx mustache -p partials/header.mustache -p partials/footer.mustache data.json $< > $@
-
-docs/style.css: style.css
-	cp style.css docs/style.css
+clean:
+	rm -rf docs/*
