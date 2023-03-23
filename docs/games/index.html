@@ -132,11 +132,11 @@ function app() {
 					e.banner = `https://cdn.akamai.steamstatic.com/steam/apps/${e.id}/header.jpg`;
 				}
 
-				if (e.banner.startsWith('steam:')) {
+				if (e.banner && e.banner.startsWith('steam:')) {
 					e.banner = `https://cdn.akamai.steamstatic.com/steam/apps/${e.banner.slice(6)}/header.jpg`;
 				}
 
-				if (e.banner.startsWith('/images/flathub')) {
+				if (e.banner && e.banner.startsWith('/images/flathub')) {
 					e.banner = `https://github.com/ChimeraOS/chimera/raw/master/${e.banner}.png`;
 				}
 
