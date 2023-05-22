@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>ChimeraOS</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="hamnav">
+	<label for="hamburger">&#9776;</label>
+	<input type="checkbox" id="hamburger"/>
+
+	<div id="hamitems">
+		<a href="/">Home</a>
+		<a href="/about">About</a>
+		<a href="/download">Download</a>
+		<a href="/games">Games</a>
+		<a href="/contribute">Contribute</a>
+		<a href="https://github.com/ChimeraOS/chimeraos/wiki">Docs</a>
+	</div>
+</nav>
+
+<br>
+
+<div class="social">
+	<a aria-label="Twitter" href="https://twitter.com/ChimeraOS_Linux"><i class="ri-twitter-fill"></i></a>
+	<a aria-label="Discord" href="https://discord.gg/fKsUbrt"><i class="ri-discord-fill"></i></a>
+	<a aria-label="GitHub" href="https://github.com/chimeraos"><i class="ri-github-fill"></i></a>
+	<a aria-label="Patreon" href="https://patreon.com/alkazar"><i class="ri-patreon-fill"></i></a>
+</div>
+
+<script defer src="https://unpkg.com/alpinejs@3.9.0/dist/cdn.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js" integrity="sha512-CSBhVREyzHAjAFfBlIBakjoRUKp5h7VSweP0InR/pAJyptH7peuhCsqAI/snV+TwZmXZqoUklpXp6R6wMnYf5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script>
+
+function app() {
+	return {
+
+		handheldRows: [
+			{ key : 'speakers',            title : 'Speakers' },
+			{ key : 'touch_screen',        title : 'Touch screen' },
+			{ key : 'screen_orientation',  title : 'Screen orientation' },
+			{ key : 'headphone_jack',      title : 'Headphone jack' },
+			{ key : 'bluetooth',           title : 'Bluetooth' },
+			{ key : 'wifi',                title : 'Wifi' },
+			{ key : 'gamepad',             title : 'Gamepad' },
+			{ key : 'volume_buttons',      title : 'Volume buttons' },
+			{ key : 'extra_buttons',       title : 'Extra buttons' },
+			{ key : 'suspend',             title : 'Suspend/Resume' },
+			{ key : 'finger_print_reader', title : 'Finger print reader' },
+			{ key : 'gyro',                title : 'Gyro' },
+			{ key : 'micro_sd',            title : 'micro SD slot' },
+			{ key : 'video_out',           title : 'Video out (with compatible dock/adapter)' },
+			{ key : 'ethernet',            title : 'Wired network (with compatible docker/adapter)' },
+			{ key : 'tdp_control',         title : 'TDP control (via Chimera app)' },
+			{ key : 'egpu',                title : 'eGPU support' },
+		],
+		items: [],
+
+		async init() {
+			const response = await fetch('https://raw.githubusercontent.com/ChimeraOS/chimera-data/master/hwdb.yaml');
+			const data = await response.text();
+			this.items = jsyaml.load(data);
+		},
+
+		getIcon(text) {
+			if (text === 'supported') return '✅';
+			if (text === 'limited-support') return '⚠️';
+			if (text === 'unsupported') return '🛑';
+			if (text === 'not-applicable') return '⬛';
+			if (text === 'unknown') return '🯄';
+		},
+	};
+}
+
+</script>
+
+<style>
+
+table {
+	border: 1px solid white;
+	border-collapse: collapse;
+}
+
+td {
+	text-align: left;
+	padding: 10px;
+}
+
+tr:nth-child(even) {
+    background-color: #520b29;
+}
+
+tr:nth-child(odd) {
+    background-color: #730e3a;
+}
+
+table {
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 120px;
+	max-width: 600px;
+}
+
+.not-applicable {
+	text-decoration : line-through;
+	color : gray;
+}
+
+</style>
+
+<br>
+<br>
+<div x-data="app()">
+
+
+<h2>Handheld device support</h2>
+
+
+<h3>Legend</h3>
+<table role="grid">
+	<tr>
+		<td>✅</td>
+		<td>Working perfectly out of the box</td>
+	</tr>
+	<tr>
+		<td>⚠️</td>
+		<td>Working with some limitations or manual configuration</td>
+	</tr>
+	<tr>
+		<td>🛑</td>
+		<td>Not working at all</td>
+	</tr>
+	<tr>
+		<td>⬛</td>
+		<td>The feature is not available on the device</td>
+	</tr>
+	<tr>
+		<td>🯄</td>
+		<td>Unknown if working or not</td>
+	</tr>
+</table>
+
+<template x-for="item in items">
+	<div>
+		<table role="grid">
+			<tr>
+				<td style="text-align: center; background-color: white; color: black;" colspan="2" x-text="`${item.name}`"></td>
+			</tr>
+			<template x-if="item.store">
+				<tr>
+					<td style="background-color: white;" colspan="2"><a target="_blank" style="margin: 10px;" class="button" :href="item.store">Buy Now</a></td>
+				</tr>
+			</template>
+			<template x-for="row in handheldRows">
+				<tr>
+					<td x-text="`${getIcon(item[row.key])}`"></td>
+					<td :class="item[row.key] === 'not-applicable' ? 'not-applicable' : ''" x-text="`${row.title}`"></td>
+				</tr>
+			</template>
+			<template x-if="item.notes">
+				<tr style="background-color: white; color: black;">
+					<td>ℹ️</td>
+					<td x-text="`${item.notes}`"></td>
+				</tr>
+			</template>
+		</table>
+	</div>
+</template>
+
+</div>
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+	<!-- https://remixicon.com/ -->
+</body>
+</html>
