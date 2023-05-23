@@ -34,7 +34,7 @@
 	display: none;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1200px){
 	#hamitems a {
 		box-sizing: border-box;
 		display: block;
