@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>ChimeraOS Download Statistics</title>
+
+	<script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<div>
+	<div id="myChart" style="width:100%; height:100%;"></div>
+</div>
+</body>
+
+<script>
+async function getData(url, contentTypes) {
+	const response = await fetch(url);
+	const releases = await response.json();
+
+	const data = [];
+	for (release of releases) {
+		const asset = _.find(release.assets, e => _.includes(contentTypes, e.content_type));
+		if (!asset) {
+			continue;
+		}
+		data.push({
+			name  : release.name,
+			count : asset.download_count,
+			date  : asset.created_at
+		});
+	}
+
+	return data;
+}
+
+async function main() {
+	const images = _.concat(
+		await getData('https://api.github.com/repos/chimeraos/chimeraos/releases?page=1', [ 'application/x-xz' ]),
+		await getData('https://api.github.com/repos/chimeraos/chimeraos/releases?page=2', [ 'application/x-xz' ]),
+		await getData('https://api.github.com/repos/chimeraos/chimeraos/releases?page=3', [ 'application/x-xz' ]),
+	);
+	const isos = _.concat(
+		await getData('https://api.github.com/repos/chimeraos/install-media/releases?page=1', [ 'application/octet-stream', 'application/x-cd-image' ]),
+		await getData('https://api.github.com/repos/chimeraos/install-media/releases?page=2', [ 'application/octet-stream', 'application/x-cd-image' ]),
+		await getData('https://api.github.com/repos/chimeraos/install-media/releases?page=3', [ 'application/octet-stream', 'application/x-cd-image' ]),
+	);
+
+	const data = [{
+		name: '# of installs',
+		x: _.map(images, 'date'),
+		y: _.map(images, 'count'),
+		text: _.map(images, 'name'),
+		mode: 'lines+markers',
+		type: 'scatter',
+	}, {
+		name: '# of install media downloads',
+		x: _.map(isos, 'date'),
+		y: _.map(isos, 'count'),
+		text: _.map(isos, 'name'),
+		mode: 'lines+markers',
+		type: 'scatter',
+	}];
+
+	const layout = {
+		xaxis : {
+			title: 'Upload Date'
+		},
+	};
+
+	const ctx = document.getElementById('myChart');
+	Plotly.newPlot(ctx, data, layout);
+}
+
+main();
+</script>
+</html>
