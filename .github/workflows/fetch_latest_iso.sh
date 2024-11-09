@@ -23,7 +23,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Make fetch_latest_iso.sh executable
-      run: chmod +x fetch_latest_iso.sh
+      run: chmod +x scripts/fetch_latest_iso.sh
 
     - name: Run shell script to fetch ISO download link
       env:
