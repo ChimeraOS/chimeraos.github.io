@@ -1,5 +1,5 @@
 <!--Author: D.A.Pelasgus-->
-<p align="center"><img src="src/_assets/logo.svg" alt="Tauri" style="width: 150px;" /></p>
+<p align="center"><img src="src/_assets/logo.svg" alt="ChimeraOS" style="width: 150px;" /></p>
 
 [![status](https://img.shields.io/badge/status-stable-%23961937.svg?style=for-the-badge)](chimeraos.github.io )
 [![License](https://img.shields.io/badge/License-GPL3-%23961937.svg?style=for-the-badge)](https://chimeraos.org)
