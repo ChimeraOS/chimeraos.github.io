@@ -1,0 +1,30 @@
+SPDXVersion: SPDX-2.1
+DataLicense: CC0-1.0
+SPDXID: SPDXRef-DOCUMENT
+DocumentName: License for Repository
+DocumentNamespace: http://spdx.org/spdxdocs/license-for-repository-2024-11-09
+Creator: Person: D.A. Pelasgus (demetrius@pelasgus.xyz)
+Creator: Tool: License Generator
+Created: 2024-11-09
+
+##### License Information #####
+
+LicenseID: GPL-3.0-only
+ExtractedText:
+<text>
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc.
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+                            Preamble
+
+ The GNU General Public License is a free, copyleft license for
+ software and other kinds of works.
+
+ (Full license text here - see https://www.gnu.org/licenses/gpl-3.0.txt)
+
+</text>
+
