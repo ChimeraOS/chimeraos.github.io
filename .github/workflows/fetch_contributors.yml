@@ -19,11 +19,7 @@ jobs:
 
     - name: Make fetch_contributors.sh executable
       run: chmod +x scripts/fetch_contributors.sh
-
-    - name: Set up GITHUB_TOKEN
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      
     - name: Run script to fetch and update contributors
       env:
         ORG: "chimeraos"
