@@ -58,27 +58,4 @@
   </a>
 </div>
 
-<!-- JavaScript function to set the download link -->
-<script>
-  async function setDownloadLink() {
-    try {
-      const response = await fetch("https://api.github.com/repos/chimeraos/install-media/releases/latest");
-      const data = await response.json();
-      const isoAsset = data.assets.find(asset => asset.name.endsWith('.iso'));
-
-      if (isoAsset) {
-        const downloadLink = document.getElementById("downloadLink");
-        downloadLink.href = isoAsset.browser_download_url;
-        downloadLink.download = isoAsset.name;
-      } else {
-        console.error("ISO file not found in the latest release.");
-      }
-    } catch (error) {
-      console.error("Error fetching the latest release:", error);
-    }
-  }
-
-  setDownloadLink();
-</script>
-
 {{> footer}}
