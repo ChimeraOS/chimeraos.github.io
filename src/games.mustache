@@ -21,7 +21,7 @@ body {
 	border-color: white;
 	color: black;
 	width: 230px;
-	height: 150px;
+	height: 250px;
 	overflow: hidden;
 	font-size: 16px;
 }
@@ -47,6 +47,11 @@ p {
 
 .status-bar {
 	cursor: pointer;
+}
+
+.name {
+	font-family: verdana;
+	font-weight: bold;
 }
 
 .notes {
@@ -176,14 +181,6 @@ function app() {
 
 	<template x-for="item in filteredItems">
 		<div class="card" :class="item.status">
-			<template x-if="!item.store">
-				<img x-show="!shouldShowInfo(item)" width="230" height="108" :src="item.banner" loading="lazy">
-			</template>
-			<template x-if="item.store">
-			<a :href="item.store">
-				<img x-show="!shouldShowInfo(item)" width="230" height="108" :src="item.banner" loading="lazy">
-			</a>
-			</template>
 			<div class="left-content" :class="{ 'status-bar': item.notes, 'full': shouldShowInfo(item) }" @click="toggleInfo(item.id)">
 				<p x-show="!shouldShowInfo(item)" x-text="`${getStatusDisplay(item.status)}${getInfoIcon(item.notes)}`"></p>
 				<ul class="notes" x-show="shouldShowInfo(item)">
@@ -192,6 +189,17 @@ function app() {
 					</template>
 				</ul>
 			</div>
+			<template x-if="!item.store">
+				<img x-show="!shouldShowInfo(item)" width="230" height="108" :src="item.banner" loading="lazy">
+			</template>
+			<template x-if="item.store">
+			<a :href="item.store">
+				<img x-show="!shouldShowInfo(item)" width="230" height="108" :src="item.banner" loading="lazy">
+			</a>
+			</template>
+			<template x-if="item.name">
+					<p x-text="item.name" class="name" />
+			</template>
 		</div>
 	</template>
 </div>
