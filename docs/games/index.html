@@ -142,15 +142,10 @@ function app() {
 					e.banner = `https://github.com/ChimeraOS/chimera/raw/master/${e.banner}.png`;
 				}
 
-				// expand store property
-				if (e.platform === 'steam' && !e.store) {
+				// set store property
+				if (e.platform === 'steam') {
 					e.store = `https://store.steampowered.com/app/${e.id}`;
 				}
-
-				// Humble Bundle ended their affiliate program
-				//if (e.store && e.store.startsWith('humble:')) {
-				//	e.store = `https://www.humblebundle.com/store/${e.store.slice(7)}?partner=chimera`;
-				//}
 			});
 		},
 
