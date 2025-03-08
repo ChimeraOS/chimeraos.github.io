@@ -147,9 +147,10 @@ function app() {
 					e.store = `https://store.steampowered.com/app/${e.id}`;
 				}
 
-				if (e.store && e.store.startsWith('humble:')) {
-					e.store = `https://www.humblebundle.com/store/${e.store.slice(7)}?partner=chimera`;
-				}
+				// Humble Bundle ended their affiliate program
+				//if (e.store && e.store.startsWith('humble:')) {
+				//	e.store = `https://www.humblebundle.com/store/${e.store.slice(7)}?partner=chimera`;
+				//}
 			});
 		},
 
